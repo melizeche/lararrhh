@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.7.0-alpha">
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<database name="new_database">
+</database>
+
+<table name="users">
+	<schema name="public"/>
+	<position x="96" y="284"/>
+	<column name="usuario" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="user" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="administrador">
+		<type name="integer"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="estado" not-null="true">
+		<type name="char"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk" type="pk-constr" factor="10" table="public.users">
+		<columns names="usuario" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="administradores">
+	<schema name="public"/>
+	<position x="153" y="33"/>
+	<column name="administrador" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="estado" not-null="true">
+		<type name="char"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp"/>
+	</column>
+	<constraint name="pk" type="pk-constr" factor="10" table="public.administradores">
+		<columns names="administrador" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.administradores" table="public.users">
+	<columns names="administrador" ref-type="src-columns"/>
+	<columns names="administrador" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_users_administradores" type="relfk"
+	 src-table="public.users"
+	 dst-table="public.administradores"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+</dbmodel>
+

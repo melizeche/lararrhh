@@ -26,7 +26,7 @@ Route::get('/user', function()
   $user->password_confirmation = 'deadgiveaway';
   var_dump($user->save());
   // Create a new Post
-	$post = new Post(array('body' => 'Yada yada yada'));
+	$post = new Post(array('body' => date("d-m-Y h:i:s").'Yada yada yada'));
 	// Grab User 1
 	$user = User::find(2);
 	// Save the Post
@@ -39,17 +39,22 @@ Route::get('/user', function()
 	$people->position = "Jefe";
 	$people->degree = "1";
 	var_dump($people->save());
-	
+
 
 
 });
 
-Route::get('/po', function()
+Route::get('/list', function()
 {
-	// Create a new Post
-	$post = new Post(array('body' => 'Yada yada yada'));
-	// Grab User 1
-	$user = User::find(2);
-	// Save the Post
-	$user->posts()->save($post);
+	$user = User::find(3);
+	var_dump($user->name);
+	$carr = Carrera::all();
+	var_dump($carr->first()->titulo_cargo);
+	foreach ($carr as $ca)
+	{
+    	echo("<br>");
+    	echo($ca->numero_doc);
+
+	}
 });
+

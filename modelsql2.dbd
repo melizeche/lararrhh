@@ -1,0 +1,286 @@
+<XMLDiagram>
+  <TDBADiagramController Locked="0">
+    <Elements>
+      <TDBADiagramObject id="1" propertiesclass="TDiagramMetaTableProperties" objectname="public.users">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="20" top="10" width="200" height="200"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="2" propertiesclass="TDiagramMetaTableProperties" objectname="public.administradores">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="10" top="250" width="200" height="97"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="3" propertiesclass="TDiagramMetaTableProperties" objectname="public.perfiles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="320" top="10" width="200" height="230"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="4" propertiesclass="TDiagramForeignKeyProperties" objectname="public.users.fk_perfil">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="64" top="64" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="130" y="120"/>
+                <Point x="370" y="108"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="5" propertiesclass="TDiagramForeignKeyProperties" objectname="public.users.fk_admin">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="80" top="80" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="120" y="150"/>
+                <Point x="110" y="310"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="6" propertiesclass="TDiagramMetaTableProperties" objectname="public.carreras_adm">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="456" top="288" width="200" height="250"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="7" propertiesclass="TDiagramMetaTableProperties" objectname="public.archivos">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="20" top="380" width="160" height="110"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="8" propertiesclass="TDiagramForeignKeyProperties" objectname="public.carreras_adm.fk_user">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="128" top="128" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="526" y="418"/>
+                <Point x="180" y="140"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="9" propertiesclass="TDiagramForeignKeyProperties" objectname="public.carreras_adm.fk_archivo">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="144" top="144" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="506" y="478"/>
+                <Point x="150" y="444"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="10" propertiesclass="TDiagramMetaTableProperties" objectname="public.cusos_culminados">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="240" top="530" width="200" height="210"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="11" propertiesclass="TDiagramForeignKeyProperties" objectname="public.cusos_culminados.fk_user">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="176" top="176" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="390" y="615"/>
+                <Point x="170" y="130"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="12" propertiesclass="TDiagramForeignKeyProperties" objectname="public.cusos_culminados.fk_perfil">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="192" top="192" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="290" y="635"/>
+                <Point x="360" y="180"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="13" propertiesclass="TDiagramForeignKeyProperties" objectname="public.cusos_culminados.fk_archivo">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="208" top="208" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="280" y="595"/>
+                <Point x="80" y="434"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="14" propertiesclass="TDiagramMetaTableProperties" objectname="public.cursos_disponibles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="460" top="620" width="200" height="190"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="15" propertiesclass="TDiagramMetaTableProperties" objectname="public.requerimientos">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="20" top="530" width="140" height="160"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="16" propertiesclass="TDiagramMetaTableProperties" objectname="public.requerimientos_x_cursos_disponibles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="100" top="760" width="250" height="83"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="17" propertiesclass="TDiagramForeignKeyProperties" objectname="public.requerimientos_x_cursos_disponibles.fk_req">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="272" top="272" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="160" y="810"/>
+                <Point x="90" y="600"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="18" propertiesclass="TDiagramForeignKeyProperties" objectname="public.requerimientos_x_cursos_disponibles.Foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="288" top="288" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="260" y="810"/>
+                <Point x="510" y="790"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="19" propertiesclass="TDiagramMetaTableProperties" objectname="public.archivo_x_perfiles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="792" top="96" width="200" height="83"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="20" propertiesclass="TDiagramForeignKeyProperties" objectname="public.archivo_x_perfiles.Foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="320" top="320" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="852" y="136"/>
+                <Point x="450" y="130"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="21" propertiesclass="TDiagramForeignKeyProperties" objectname="public.archivo_x_perfiles.Foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="336" top="336" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="842" y="136"/>
+                <Point x="130" y="440"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="22" propertiesclass="TDiagramMetaTableProperties" objectname="public.carreras_x_perfiles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="804" top="288" width="200" height="66"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="23" propertiesclass="TDiagramForeignKeyProperties" objectname="public.carreras_x_perfiles.Foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="368" top="368" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="864" y="328"/>
+                <Point x="480" y="150"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="24" propertiesclass="TDiagramForeignKeyProperties" objectname="public.carreras_x_perfiles.Foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="384" top="384" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="854" y="338"/>
+                <Point x="516" y="438"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="25" propertiesclass="TDiagramMetaTableProperties" objectname="public.cursosC_x_perfiles">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="816" top="420" width="200" height="110"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="26" propertiesclass="TDiagramForeignKeyProperties" objectname="public.cursosC_x_perfiles.Foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="416" top="416" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="896" y="492"/>
+                <Point x="470" y="120"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="27" propertiesclass="TDiagramForeignKeyProperties" objectname="public.cursosC_x_perfiles.Foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="432" top="432" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="876" y="482"/>
+                <Point x="380" y="630"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+    </Elements>
+    <Surface zoom="103" scrollx="13" scrolly="405"/>
+  </TDBADiagramController>
+</XMLDiagram>

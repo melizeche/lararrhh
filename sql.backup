@@ -1,0 +1,1014 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.11
+-- Dumped by pg_dump version 9.1.11
+-- Started on 2014-02-14 05:50:35 PYST
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 2067 (class 1262 OID 18372)
+-- Name: sistema; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE sistema WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'es_PY.UTF-8' LC_CTYPE = 'es_PY.UTF-8';
+
+
+ALTER DATABASE sistema OWNER TO postgres;
+
+\connect sistema
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 181 (class 3079 OID 11719)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2070 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 164 (class 1259 OID 18411)
+-- Dependencies: 1890 5
+-- Name: administradores; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE administradores (
+    administrador integer NOT NULL,
+    estado character(1) NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.administradores OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 18409)
+-- Dependencies: 5 164
+-- Name: administradores_administrador_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE administradores_administrador_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.administradores_administrador_seq OWNER TO postgres;
+
+--
+-- TOC entry 2071 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: administradores_administrador_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE administradores_administrador_seq OWNED BY administradores.administrador;
+
+
+--
+-- TOC entry 178 (class 1259 OID 18594)
+-- Dependencies: 5
+-- Name: archivo_x_perfiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE archivo_x_perfiles (
+    archivo integer NOT NULL,
+    perfil integer NOT NULL,
+    adjunto character varying(255)
+);
+
+
+ALTER TABLE public.archivo_x_perfiles OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 18467)
+-- Dependencies: 1896 5
+-- Name: archivos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE archivos (
+    archivo integer NOT NULL,
+    tipo_doc character varying(30),
+    adjunto character varying(255),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.archivos OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 18465)
+-- Dependencies: 170 5
+-- Name: archivos_archivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE archivos_archivo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.archivos_archivo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2072 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: archivos_archivo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE archivos_archivo_seq OWNED BY archivos.archivo;
+
+
+--
+-- TOC entry 168 (class 1259 OID 18459)
+-- Dependencies: 1894 5
+-- Name: carreras_adm; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE carreras_adm (
+    carrera integer NOT NULL,
+    titulo_cargo character varying(255),
+    numero_doc character varying(150),
+    fecha_inicio date,
+    fecha_fin date,
+    usuario integer NOT NULL,
+    archivo integer,
+    dependencia character varying(50),
+    entidad character varying(50),
+    rubro character varying(30),
+    bonificaciones character varying(30),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.carreras_adm OWNER TO postgres;
+
+--
+-- TOC entry 167 (class 1259 OID 18457)
+-- Dependencies: 5 168
+-- Name: carreras_adm_carrera_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE carreras_adm_carrera_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.carreras_adm_carrera_seq OWNER TO postgres;
+
+--
+-- TOC entry 2073 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: carreras_adm_carrera_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE carreras_adm_carrera_seq OWNED BY carreras_adm.carrera;
+
+
+--
+-- TOC entry 179 (class 1259 OID 18609)
+-- Dependencies: 5
+-- Name: carreras_x_perfiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE carreras_x_perfiles (
+    carrera integer NOT NULL,
+    perfil integer NOT NULL
+);
+
+
+ALTER TABLE public.carreras_x_perfiles OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 18626)
+-- Dependencies: 5
+-- Name: cursosC_x_perfiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "cursosC_x_perfiles" (
+    "cursoC" integer NOT NULL,
+    perfil integer NOT NULL,
+    fecha_fin date,
+    lugar integer
+);
+
+
+ALTER TABLE public."cursosC_x_perfiles" OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 18533)
+-- Dependencies: 1900 5
+-- Name: cursos_disponibles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cursos_disponibles (
+    cod_curso integer NOT NULL,
+    titulo character varying(255),
+    contenido text,
+    fecha_inicio date,
+    fecha_fin integer,
+    lugar character varying(30),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone,
+    costo character varying(30),
+    requerimiento integer NOT NULL
+);
+
+
+ALTER TABLE public.cursos_disponibles OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 18536)
+-- Dependencies: 173 5
+-- Name: cursos_disponibles_cod_curso_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cursos_disponibles_cod_curso_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cursos_disponibles_cod_curso_seq OWNER TO postgres;
+
+--
+-- TOC entry 2074 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: cursos_disponibles_cod_curso_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cursos_disponibles_cod_curso_seq OWNED BY cursos_disponibles.cod_curso;
+
+
+--
+-- TOC entry 172 (class 1259 OID 18499)
+-- Dependencies: 1898 5
+-- Name: cusos_culminados; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cusos_culminados (
+    cod_curso integer NOT NULL,
+    titulo character varying(255),
+    contenido text,
+    fecha_inicio date,
+    fecha_fin integer,
+    usuario integer NOT NULL,
+    archivo integer,
+    perfil integer NOT NULL,
+    calificacion character varying(255),
+    lugar character varying(30),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.cusos_culminados OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 18497)
+-- Dependencies: 5 172
+-- Name: cusos_culminados_cod_curso_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cusos_culminados_cod_curso_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cusos_culminados_cod_curso_seq OWNER TO postgres;
+
+--
+-- TOC entry 2075 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: cusos_culminados_cod_curso_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cusos_culminados_cod_curso_seq OWNED BY cusos_culminados.cod_curso;
+
+
+--
+-- TOC entry 166 (class 1259 OID 18428)
+-- Dependencies: 1892 5
+-- Name: perfiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE perfiles (
+    perfil integer NOT NULL,
+    estado character(1) NOT NULL,
+    nombre character varying(30) NOT NULL,
+    documento character varying(23),
+    tipo_documento character varying(30),
+    nivel_academico character varying(30),
+    especialidad character varying(30),
+    documento_comprobante character varying(30),
+    direccion character varying(30),
+    telefono character varying(30),
+    dependencia character varying(30),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.perfiles OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 18426)
+-- Dependencies: 166 5
+-- Name: perfiles_perfil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE perfiles_perfil_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.perfiles_perfil_seq OWNER TO postgres;
+
+--
+-- TOC entry 2076 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: perfiles_perfil_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE perfiles_perfil_seq OWNED BY perfiles.perfil;
+
+
+--
+-- TOC entry 176 (class 1259 OID 18560)
+-- Dependencies: 1902 5
+-- Name: requerimientos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE requerimientos (
+    requerimiento integer NOT NULL,
+    cargo character varying(30),
+    titulo character varying(30),
+    visa character varying(30),
+    antiguedad date,
+    pais character varying(30),
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.requerimientos OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 18558)
+-- Dependencies: 5 176
+-- Name: requerimientos_requerimiento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE requerimientos_requerimiento_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.requerimientos_requerimiento_seq OWNER TO postgres;
+
+--
+-- TOC entry 2077 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: requerimientos_requerimiento_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE requerimientos_requerimiento_seq OWNED BY requerimientos.requerimiento;
+
+
+--
+-- TOC entry 177 (class 1259 OID 18577)
+-- Dependencies: 5
+-- Name: requerimientos_x_cursos_disponibles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE requerimientos_x_cursos_disponibles (
+    requerimiento integer NOT NULL,
+    "cursoD" integer NOT NULL,
+    titulo character varying(30)
+);
+
+
+ALTER TABLE public.requerimientos_x_cursos_disponibles OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 18391)
+-- Dependencies: 1888 5
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    usuario integer NOT NULL,
+    administrador integer,
+    "user" character varying(30) NOT NULL,
+    password character varying(255) NOT NULL,
+    nombre character varying(255) NOT NULL,
+    estado character(1) NOT NULL,
+    email character varying(30),
+    perfil integer,
+    fecha_creacion timestamp without time zone DEFAULT now(),
+    fecha_modificacion timestamp without time zone
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 18389)
+-- Dependencies: 5 162
+-- Name: users_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_usuario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2078 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: users_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_usuario_seq OWNED BY users.usuario;
+
+
+--
+-- TOC entry 1889 (class 2604 OID 18414)
+-- Dependencies: 163 164 164
+-- Name: administrador; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY administradores ALTER COLUMN administrador SET DEFAULT nextval('administradores_administrador_seq'::regclass);
+
+
+--
+-- TOC entry 1895 (class 2604 OID 18470)
+-- Dependencies: 169 170 170
+-- Name: archivo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY archivos ALTER COLUMN archivo SET DEFAULT nextval('archivos_archivo_seq'::regclass);
+
+
+--
+-- TOC entry 1893 (class 2604 OID 18462)
+-- Dependencies: 167 168 168
+-- Name: carrera; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carreras_adm ALTER COLUMN carrera SET DEFAULT nextval('carreras_adm_carrera_seq'::regclass);
+
+
+--
+-- TOC entry 1899 (class 2604 OID 18538)
+-- Dependencies: 174 173
+-- Name: cod_curso; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cursos_disponibles ALTER COLUMN cod_curso SET DEFAULT nextval('cursos_disponibles_cod_curso_seq'::regclass);
+
+
+--
+-- TOC entry 1897 (class 2604 OID 18502)
+-- Dependencies: 172 171 172
+-- Name: cod_curso; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cusos_culminados ALTER COLUMN cod_curso SET DEFAULT nextval('cusos_culminados_cod_curso_seq'::regclass);
+
+
+--
+-- TOC entry 1891 (class 2604 OID 18431)
+-- Dependencies: 165 166 166
+-- Name: perfil; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY perfiles ALTER COLUMN perfil SET DEFAULT nextval('perfiles_perfil_seq'::regclass);
+
+
+--
+-- TOC entry 1901 (class 2604 OID 18563)
+-- Dependencies: 175 176 176
+-- Name: requerimiento; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY requerimientos ALTER COLUMN requerimiento SET DEFAULT nextval('requerimientos_requerimiento_seq'::regclass);
+
+
+--
+-- TOC entry 1887 (class 2604 OID 18394)
+-- Dependencies: 161 162 162
+-- Name: usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN usuario SET DEFAULT nextval('users_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 0 OID 18411)
+-- Dependencies: 164 2063
+-- Data for Name: administradores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2079 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: administradores_administrador_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('administradores_administrador_seq', 1, false);
+
+
+--
+-- TOC entry 2060 (class 0 OID 18594)
+-- Dependencies: 178 2063
+-- Data for Name: archivo_x_perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2052 (class 0 OID 18467)
+-- Dependencies: 170 2063
+-- Data for Name: archivos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2080 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: archivos_archivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('archivos_archivo_seq', 1, false);
+
+
+--
+-- TOC entry 2050 (class 0 OID 18459)
+-- Dependencies: 168 2063
+-- Data for Name: carreras_adm; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2081 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: carreras_adm_carrera_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('carreras_adm_carrera_seq', 1, false);
+
+
+--
+-- TOC entry 2061 (class 0 OID 18609)
+-- Dependencies: 179 2063
+-- Data for Name: carreras_x_perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2062 (class 0 OID 18626)
+-- Dependencies: 180 2063
+-- Data for Name: cursosC_x_perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2055 (class 0 OID 18533)
+-- Dependencies: 173 2063
+-- Data for Name: cursos_disponibles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2082 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: cursos_disponibles_cod_curso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cursos_disponibles_cod_curso_seq', 1, false);
+
+
+--
+-- TOC entry 2054 (class 0 OID 18499)
+-- Dependencies: 172 2063
+-- Data for Name: cusos_culminados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2083 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: cusos_culminados_cod_curso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cusos_culminados_cod_curso_seq', 1, false);
+
+
+--
+-- TOC entry 2048 (class 0 OID 18428)
+-- Dependencies: 166 2063
+-- Data for Name: perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2084 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: perfiles_perfil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('perfiles_perfil_seq', 1, false);
+
+
+--
+-- TOC entry 2058 (class 0 OID 18560)
+-- Dependencies: 176 2063
+-- Data for Name: requerimientos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2085 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: requerimientos_requerimiento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('requerimientos_requerimiento_seq', 1, false);
+
+
+--
+-- TOC entry 2059 (class 0 OID 18577)
+-- Dependencies: 177 2063
+-- Data for Name: requerimientos_x_cursos_disponibles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2044 (class 0 OID 18391)
+-- Dependencies: 162 2063
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2086 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: users_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_usuario_seq', 1, false);
+
+
+--
+-- TOC entry 1906 (class 2606 OID 18417)
+-- Dependencies: 164 164 2064
+-- Name: administradores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY administradores
+    ADD CONSTRAINT administradores_pkey PRIMARY KEY (administrador);
+
+
+--
+-- TOC entry 1922 (class 2606 OID 18598)
+-- Dependencies: 178 178 178 2064
+-- Name: archivo_x_perfiles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY archivo_x_perfiles
+    ADD CONSTRAINT archivo_x_perfiles_pkey PRIMARY KEY (archivo, perfil);
+
+
+--
+-- TOC entry 1912 (class 2606 OID 18472)
+-- Dependencies: 170 170 2064
+-- Name: archivos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY archivos
+    ADD CONSTRAINT archivos_pkey PRIMARY KEY (archivo);
+
+
+--
+-- TOC entry 1910 (class 2606 OID 18620)
+-- Dependencies: 168 168 2064
+-- Name: carreras_adm_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY carreras_adm
+    ADD CONSTRAINT carreras_adm_pkey PRIMARY KEY (carrera) WITH (fillfactor=100);
+
+
+--
+-- TOC entry 1924 (class 2606 OID 18613)
+-- Dependencies: 179 179 179 2064
+-- Name: carreras_x_perfiles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY carreras_x_perfiles
+    ADD CONSTRAINT carreras_x_perfiles_pkey PRIMARY KEY (carrera, perfil);
+
+
+--
+-- TOC entry 1926 (class 2606 OID 18630)
+-- Dependencies: 180 180 180 2064
+-- Name: cursosC_x_perfiles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "cursosC_x_perfiles"
+    ADD CONSTRAINT "cursosC_x_perfiles_pkey" PRIMARY KEY ("cursoC", perfil);
+
+
+--
+-- TOC entry 1916 (class 2606 OID 18588)
+-- Dependencies: 173 173 2064
+-- Name: cursos_disponibles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cursos_disponibles
+    ADD CONSTRAINT cursos_disponibles_pkey PRIMARY KEY (cod_curso) WITH (fillfactor=100);
+
+
+--
+-- TOC entry 1914 (class 2606 OID 18637)
+-- Dependencies: 172 172 2064
+-- Name: cusos_culminados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cusos_culminados
+    ADD CONSTRAINT cusos_culminados_pkey PRIMARY KEY (cod_curso) WITH (fillfactor=100);
+
+
+--
+-- TOC entry 1908 (class 2606 OID 18433)
+-- Dependencies: 166 166 2064
+-- Name: perfiles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY perfiles
+    ADD CONSTRAINT perfiles_pkey PRIMARY KEY (perfil);
+
+
+--
+-- TOC entry 1918 (class 2606 OID 18565)
+-- Dependencies: 176 176 2064
+-- Name: requerimientos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY requerimientos
+    ADD CONSTRAINT requerimientos_pkey PRIMARY KEY (requerimiento);
+
+
+--
+-- TOC entry 1920 (class 2606 OID 18581)
+-- Dependencies: 177 177 177 2064
+-- Name: requerimientos_x_cursos_disponibles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY requerimientos_x_cursos_disponibles
+    ADD CONSTRAINT requerimientos_x_cursos_disponibles_pkey PRIMARY KEY (requerimiento, "cursoD");
+
+
+--
+-- TOC entry 1904 (class 2606 OID 18396)
+-- Dependencies: 162 162 2064
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (usuario);
+
+
+--
+-- TOC entry 1935 (class 2606 OID 18589)
+-- Dependencies: 177 1915 173 2064
+-- Name: Foreign_key01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY requerimientos_x_cursos_disponibles
+    ADD CONSTRAINT "Foreign_key01" FOREIGN KEY ("cursoD") REFERENCES cursos_disponibles(cod_curso);
+
+
+--
+-- TOC entry 1936 (class 2606 OID 18599)
+-- Dependencies: 1907 166 178 2064
+-- Name: Foreign_key01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY archivo_x_perfiles
+    ADD CONSTRAINT "Foreign_key01" FOREIGN KEY (perfil) REFERENCES perfiles(perfil);
+
+
+--
+-- TOC entry 1938 (class 2606 OID 18614)
+-- Dependencies: 1907 166 179 2064
+-- Name: Foreign_key01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carreras_x_perfiles
+    ADD CONSTRAINT "Foreign_key01" FOREIGN KEY (perfil) REFERENCES perfiles(perfil);
+
+
+--
+-- TOC entry 1940 (class 2606 OID 18631)
+-- Dependencies: 166 180 1907 2064
+-- Name: Foreign_key01; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "cursosC_x_perfiles"
+    ADD CONSTRAINT "Foreign_key01" FOREIGN KEY (perfil) REFERENCES perfiles(perfil);
+
+
+--
+-- TOC entry 1937 (class 2606 OID 18604)
+-- Dependencies: 170 1911 178 2064
+-- Name: Foreign_key02; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY archivo_x_perfiles
+    ADD CONSTRAINT "Foreign_key02" FOREIGN KEY (archivo) REFERENCES archivos(archivo);
+
+
+--
+-- TOC entry 1939 (class 2606 OID 18621)
+-- Dependencies: 1909 179 168 2064
+-- Name: Foreign_key02; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carreras_x_perfiles
+    ADD CONSTRAINT "Foreign_key02" FOREIGN KEY (carrera) REFERENCES carreras_adm(carrera);
+
+
+--
+-- TOC entry 1941 (class 2606 OID 18638)
+-- Dependencies: 172 180 1913 2064
+-- Name: Foreign_key02; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "cursosC_x_perfiles"
+    ADD CONSTRAINT "Foreign_key02" FOREIGN KEY ("cursoC") REFERENCES cusos_culminados(cod_curso);
+
+
+--
+-- TOC entry 1928 (class 2606 OID 18439)
+-- Dependencies: 1905 162 164 2064
+-- Name: fk_admin; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_admin FOREIGN KEY (administrador) REFERENCES administradores(administrador);
+
+
+--
+-- TOC entry 1930 (class 2606 OID 18490)
+-- Dependencies: 170 168 1911 2064
+-- Name: fk_archivo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carreras_adm
+    ADD CONSTRAINT fk_archivo FOREIGN KEY (archivo) REFERENCES archivos(archivo);
+
+
+--
+-- TOC entry 1933 (class 2606 OID 18520)
+-- Dependencies: 1911 170 172 2064
+-- Name: fk_archivo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cusos_culminados
+    ADD CONSTRAINT fk_archivo FOREIGN KEY (archivo) REFERENCES archivos(archivo);
+
+
+--
+-- TOC entry 1927 (class 2606 OID 18434)
+-- Dependencies: 162 1907 166 2064
+-- Name: fk_perfil; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_perfil FOREIGN KEY (perfil) REFERENCES perfiles(perfil);
+
+
+--
+-- TOC entry 1932 (class 2606 OID 18515)
+-- Dependencies: 172 1907 166 2064
+-- Name: fk_perfil; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cusos_culminados
+    ADD CONSTRAINT fk_perfil FOREIGN KEY (perfil) REFERENCES perfiles(perfil);
+
+
+--
+-- TOC entry 1934 (class 2606 OID 18582)
+-- Dependencies: 176 1917 177 2064
+-- Name: fk_req; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY requerimientos_x_cursos_disponibles
+    ADD CONSTRAINT fk_req FOREIGN KEY (requerimiento) REFERENCES requerimientos(requerimiento);
+
+
+--
+-- TOC entry 1929 (class 2606 OID 18485)
+-- Dependencies: 1903 168 162 2064
+-- Name: fk_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carreras_adm
+    ADD CONSTRAINT fk_user FOREIGN KEY (usuario) REFERENCES users(usuario);
+
+
+--
+-- TOC entry 1931 (class 2606 OID 18510)
+-- Dependencies: 1903 172 162 2064
+-- Name: fk_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cusos_culminados
+    ADD CONSTRAINT fk_user FOREIGN KEY (usuario) REFERENCES users(usuario);
+
+
+--
+-- TOC entry 2069 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2014-02-14 05:50:35 PYST
+
+--
+-- PostgreSQL database dump complete
+--
+
