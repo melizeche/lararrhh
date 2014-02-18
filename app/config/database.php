@@ -66,7 +66,7 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'lara',
+			'database' => 'sistema',
 			'username' => 'camroot',
 			'password' => 'rootcam',
 			'charset'  => 'utf8',

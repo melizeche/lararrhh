@@ -2,7 +2,7 @@
 
 class Carrera extends Eloquent {
  
- 	protected $table = 'carrera';
+ 	protected $table = 'carreras_adm';
 
   /*
  

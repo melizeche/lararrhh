@@ -8,15 +8,16 @@ use LaravelBook\Ardent\Ardent;
 class User extends Ardent implements UserInterface, RemindableInterface {
 
 
-	/**
+	/*
 	 * Ardent validation rules
-	 */
+	 
 	public static $rules = array(
-	  'username' => 'required|between:4,16',
+	  'user' => 'required|between:4,16',
 	  'email' => 'required|email',
 	  'password' => 'required|alpha_num|min:8|confirmed',
-	  'password_confirmation' => 'required|alpha_num|min:8',
+	  #'password_confirmation' => 'required|alpha_num|min:8',
 	);
+	*/
 	public $autoPurgeRedundantAttributes = true;
 	/**
 	 * The database table used by the model.
@@ -26,7 +27,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	protected $table = 'users';
 
-	protected $fillable = array('username', 'email');
+	protected $fillable = array('user', 'email');
 	protected $guarded = array('id', 'password');
 
 	/**
@@ -66,12 +67,14 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-	/**
- * Post relationship
- */
-	public function posts()
+	/*
+  *Post relationship
+ *
+*	public function posts()
 	{
   		return $this->hasMany('Post');
 	}
+
+*/
 
 }
