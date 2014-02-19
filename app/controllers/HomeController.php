@@ -22,7 +22,40 @@ class HomeController extends BaseController {
 	public function showHome()
 	{
 		// show the form
-		return View::make('dash');
+		return View::make('home');
+	}
+	public function showNewUser()
+	{
+		return View::make('newUser');	
+	}
+
+	public function doNewUser()
+	{
+		# code...
+		$rules = array(
+			'email'    => 'required|email', // make sure the email is an actual email
+			'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+		);
+
+
+
+		$user = new User;
+		$user->nombre = Input::get('nombre');
+		$user->user = Input::get('user');
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+  		$user->estado = 'A';
+  		$si = $user->save();
+  		if($si){
+  			return Redirect::to('newuser')->with('mens', 'Se agrego el usuario ' . $user->user);
+
+  			
+  		}else{
+  			return Redirect::to('newuser')->with('mens', 'Ocurrio un error, no se pudo agregar el usuario ' . $user->user);
+  			
+  		}
+  		//var_dump($user->save());
+
 	}
 
 	public function doLogin()
@@ -57,7 +90,7 @@ class HomeController extends BaseController {
 				// return Redirect::to('secure');
 				// for now we'll just echo success (even though echoing in a controller is bad)
 				echo 'SUCCESS!';
-				return Redirect::to('web2/public.perfiles.php');
+				return Redirect::to('home');
 
 			} else {	 	
 

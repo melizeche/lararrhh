@@ -30,6 +30,8 @@ Route::get('web2',array('before' => 'auth', function()
 	));
 
 Route::get('home', array('uses' => 'HomeController@showHome'));
+Route::get('newuser', array('uses' => 'HomeController@showNewUser'));
+Route::post('newuser', array('uses' => 'HomeController@doNewUser'));
 
 Route::get('/user', function()
 {
